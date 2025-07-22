@@ -1,7 +1,4 @@
 module Triangle (rows) where
 
 rows :: Int -> [[Integer]]
-rows n = take n pascals
-
-pascals :: [[Integer]]
-pascals = [1] : map (\r -> zipWith (+) (0 : r) (r ++ [0])) pascals
+rows n = take n $ iterate (\xs -> zipWith (+) (0 : xs) (xs ++ [0])) [1]
