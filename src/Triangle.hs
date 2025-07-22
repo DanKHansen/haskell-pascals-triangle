@@ -1,10 +1,7 @@
 module Triangle (rows) where
 
 rows :: Int -> [[Integer]]
-rows x = map (\r -> map (`pascal` r) [0 .. r]) [0 .. fromIntegral (x - 1)]
+rows n = take n pascals
 
-pascal :: Integer -> Integer -> Integer
-pascal c r =
-  if (r == 0) || (r == c) || (c == 0)
-    then 1
-    else pascal (c - 1) (r - 1) + pascal c (r - 1)
+pascals :: [[Integer]]
+pascals = [1] : map (\r -> zipWith (+) (0 : r) (r ++ [0])) pascals
